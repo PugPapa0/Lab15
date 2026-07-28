@@ -1,63 +1,79 @@
 /********************************************
-*	AUTHOR:	<name>
-* COLLABORATORS: <names>
-*	COURSE:	CS 111 Intro to CS I - Java
-*	LAST MODIFIED: <date>
-********************************************/
-
-/********************************************
-*	ArrayMethods
-*********************************************
-*	PROGRAM DESCRIPTION:
-*	Collection of useful methods for int arrays.
-*********************************************
-*	ALGORITHM:
-*	TODO: <Pseudocode for selection sort here>
-*********************************************
-
-/* UML CLASS DIAGRAM:
------------------------------------------
-ArrayMethods
------------------------------------------
------------------------------------------
-+ arrayString(array : int[]) : String //static
-+ swap(array : int[], a : int, b : int) : void //static
-+ indexOfMin(array : int[], startIndex : int) : int //static
-+ reverse(array : int[]) : void //static
-+ selectionSort(array : int[]) : void //static
------------------------------------------
-*/
+ *	AUTHOR:	Travis Becker
+ * COLLABORATORS:
+ *	COURSE:	CS 111 Intro to CS I - Java
+ *	LAST MODIFIED:	07/27/2026
+ ********************************************/
 
 public class ArrayMethods
 {
-  /**DESCRIPTION: */
+
+  /**DESCRIPTION: Returns the array as a formatted String */
   public static String arrayString(int[] a)
   {
-    return ""; //STUB to keep compiler happy
+    String result = "{ ";
+
+    for (int i = 0; i < a.length; i++)
+    {
+      result += a[i];
+
+      if (i < a.length - 1)
+      {
+        result += ", ";
+      }
+    }
+
+    result += " }";
+
+    return result;
   }
-  
-  /**DESCRIPTION: */
+
+
+  /**DESCRIPTION: Swaps two values in an array */
   public static void swap(int[] array, int a, int b)
   {
-  
+    int temp = array[a];
+    array[a] = array[b];
+    array[b] = temp;
   }
-	
-	/**DESCRIPTION: */
+
+
+  /**DESCRIPTION: Finds the index of the minimum value starting at startIndex */
   public static int indexOfMin(int[] array, int startIndex)
   {
-    return 0; //STUB to keep compiler happy
+    int minIndex = startIndex;
+
+    for (int i = startIndex + 1; i < array.length; i++)
+    {
+      if (array[i] < array[minIndex])
+      {
+        minIndex = i;
+      }
+    }
+
+    return minIndex;
   }
 
-	/**DESCRIPTION: */
+
+  /**DESCRIPTION: Reverses the order of an array */
   public static void reverse(int[] array)
   {
-
+    for (int i = 0; i < array.length / 2; i++)
+    {
+      swap(array, i, array.length - 1 - i);
+    }
   }
 
-	/**DESCRIPTION: */
+
+  /**DESCRIPTION: Sorts an array using selection sort */
   public static void selectionSort(int[] array)
   {
+    for (int i = 0; i < array.length - 1; i++)
+    {
+      int minIndex = indexOfMin(array, i);
 
+      swap(array, i, minIndex);
+    }
   }
 
 }
